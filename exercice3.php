@@ -18,8 +18,16 @@ die ('erreur : ' .$e -> getMessage());
 }
 
 $donnees = $bdd -> query ('SELECT * FROM villes');
-?>
 
+while ($row = $donnees -> fetch())
+{
+
+$table [$row ['id']]= $row ['villes_nom'];
+
+}
+
+$donnees -> closeCursor();
+?>
 <table>
 <thead>
 	<tr>
@@ -29,20 +37,21 @@ $donnees = $bdd -> query ('SELECT * FROM villes');
 </thead>
 <tbody>
 
+	<tr>
 <?php
-while ($row = $donnees -> fetch())
+
+foreach ($table as $key => $value)
 {
 
 ?>
-	<tr>
-		<td><?php echo $row ['id']; ?></td>
-		<td><?php echo $row ['villes_nom']; ?></td>		
+
+		<td><?php echo $key; ?></td>
+		<td><?php echo $value; ?></td>		
 	</tr>
 	
-<?php 
-}
+<?php
 
-$donnees -> closeCursor();
+}
 
 ?>
 

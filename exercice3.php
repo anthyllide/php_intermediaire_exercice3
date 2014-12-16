@@ -53,6 +53,8 @@ foreach ($table as $key => $value)
 
 }
 
+endforeach
+
 ?>
 
 </tbody>
